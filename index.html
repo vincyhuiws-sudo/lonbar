@@ -248,12 +248,12 @@
 
         // ─── 已修改：落單時跳轉到 WhatsApp ───
         function submitOrder() {
-            let orderSummary = "🍸 【Home Bar 新柯打！】\n\n";
+            let orderSummary = "𐃯 【Home Bar 新柯打！】\n\n";
             let hasItems = false;
             
             for (let item in cart) {
                 if (cart[item] > 0) {
-                    orderSummary += `▪️ ${names[item]} x ${cart[item]}\n`;
+                    orderSummary += `𐃯 ${names[item]} x ${cart[item]}\n`;
                     hasItems = true;
                 }
             }
@@ -263,7 +263,7 @@
                 return;
             }
             
-            orderSummary += `\n💰 總計(連加一): ${document.getElementById('total-display').innerText}\n\n唔該晒大隆調酒師！🙌`;
+            orderSummary += `\n* 加埋一: ${document.getElementById('total-display').innerText}\n\n唔該晒大隆調酒師！(ෆ˙ᵕ˙ෆ)`;
             
             // 🛑 請將下方的 852XXXXXXXX 改成你用來接收訂單的真實電話號碼（例如: "85291234567"）
             const phoneNumber = "85263378993"; 
