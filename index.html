@@ -730,84 +730,89 @@
                 <stop offset="0%" stop-color="#d9a04f"/>
                 <stop offset="100%" stop-color="#8a4a1f"/>
             </linearGradient>
-            <linearGradient id="glassBaseShade" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="rgba(255,255,255,0.55)"/>
+            <linearGradient id="baseGlassShade" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="rgba(255,255,255,0.50)"/>
                 <stop offset="100%" stop-color="rgba(154,116,64,0.08)"/>
             </linearGradient>
         </defs>
 
         <!-- shadow -->
-        <ellipse class="shadow-shape" cx="50" cy="86" rx="16" ry="4"/>
-
-        <!-- outer glass silhouette -->
-        <path d="
-            M42 20
-            C40 29, 40 35, 43 42
-            C46 49, 40 58, 43 66
-            C45.5 71, 54.5 71, 57 66
-            C60 58, 54 49, 57 42
-            C60 35, 60 29, 58 20
-            Z
-        " class="glass-line"/>
+        <ellipse class="shadow-shape" cx="50" cy="86" rx="18" ry="4"/>
 
         <!-- rim -->
-        <ellipse cx="50" cy="20" rx="8.5" ry="2.4" class="glass-line"/>
+        <ellipse cx="50" cy="18" rx="13" ry="2.5" class="glass-line"/>
 
-        <!-- liquid top -->
-        <ellipse cx="50" cy="61" rx="12.6" ry="3.6"
+        <!-- glass body -->
+        <path d="
+            M37 18
+            C38 30, 39 40, 39 52
+            C39 65, 42 71, 47 75
+            C49 76.5, 51 76.5, 53 75
+            C58 71, 61 65, 61 52
+            C61 40, 62 30, 63 18
+        " class="glass-line"/>
+
+        <!-- bottom bowl curve -->
+        <path d="
+            M39 52
+            C39 65, 42 71, 47 75
+            C49 76.5, 51 76.5, 53 75
+            C58 71, 61 65, 61 52
+        " class="glass-line"/>
+
+        <!-- liquid -->
+        <ellipse cx="50" cy="61" rx="12" ry="3.2"
                  fill="url(#portsoyLiquid)" opacity="0.95"/>
 
-        <!-- liquid body -->
         <path d="
-            M37.4 61
-            C38.2 67.2, 61.8 67.2, 62.6 61
-            L60.2 66.4
-            C58.4 70.2, 41.6 70.2, 39.8 66.4
+            M38 61
+            C39 68, 61 68, 62 61
+            L60 67
+            C58.5 71, 41.5 71, 40 67
             Z
         " fill="url(#portsoyLiquid)" opacity="0.80"/>
 
         <!-- liquid highlight -->
-        <ellipse cx="50" cy="59.8" rx="10.2" ry="2.1"
+        <ellipse cx="50" cy="59.8" rx="9.5" ry="1.8"
                  fill="none"
                  stroke="rgba(255,255,255,0.22)"
                  stroke-width="0.8"/>
 
-        <!-- glass inner glow -->
-        <path d="
-            M44 27
-            C44.8 35, 45 43, 44.4 53
-        "
-        class="glass-highlight"/>
+        <!-- stem -->
+        <rect x="47" y="75" width="6" height="4.5" rx="1.6" class="glass-line"/>
 
+        <!-- base top -->
+        <ellipse cx="50" cy="79.5" rx="7" ry="2" class="glass-line"/>
+
+        <!-- base body -->
         <path d="
-            M55 28
-            C55.2 35, 55 42, 54.4 49
+            M43 79.5
+            C44 83.5, 56 83.5, 57 79.5
+            L58.5 83.5
+            C57 86, 43 86, 41.5 83.5
+            Z
+        " fill="url(#baseGlassShade)"
+        stroke="rgba(154,116,64,0.65)"
+        stroke-width="1.1"/>
+
+        <!-- base bottom -->
+        <ellipse cx="50" cy="84" rx="9" ry="2.7" class="glass-line"/>
+
+        <!-- left highlight -->
+        <path d="
+            M42 24
+            C42.5 34, 43 44, 43 58
+        " class="glass-highlight"/>
+
+        <!-- right light reflection -->
+        <path d="
+            M57 24
+            C57.2 32, 57 40, 56.5 50
         "
         stroke="rgba(255,255,255,0.20)"
         stroke-width="0.9"
         fill="none"
         stroke-linecap="round"/>
-
-        <!-- neck -->
-        <rect x="46.4" y="69.5" width="7.2" height="3.8" rx="1.5" class="glass-line"/>
-
-        <!-- base top -->
-        <ellipse cx="50" cy="73.5" rx="7" ry="2.1" class="glass-line"/>
-
-        <!-- base body -->
-        <path d="
-            M43.8 73.5
-            C44.5 77.8, 55.5 77.8, 56.2 73.5
-            L57.4 78.4
-            C56.2 81.2, 43.8 81.2, 42.6 78.4
-            Z
-        "
-        fill="url(#glassBaseShade)"
-        stroke="rgba(154,116,64,0.65)"
-        stroke-width="1.2"/>
-
-        <!-- base bottom -->
-        <ellipse cx="50" cy="79.2" rx="8.6" ry="2.9" class="glass-line"/>
     </svg>
 </div>
 
