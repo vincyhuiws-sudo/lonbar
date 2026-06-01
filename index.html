@@ -721,7 +721,7 @@
             <button class="btn-qty" onclick="changeQty('portsoy', 1)">+</button>
         </div>
     </div>
- <div class="item-svg-wrapper">
+<div class="item-svg-wrapper">
     <svg viewBox="0 0 100 100" aria-label="Portsoy whisky glass">
         <defs>
             <linearGradient id="portsoyLiquid" x1="0" y1="0" x2="0" y2="1">
@@ -730,49 +730,69 @@
             </linearGradient>
         </defs>
 
-        <!-- shadow -->
-        <ellipse class="shadow-shape" cx="50" cy="86" rx="16" ry="4"/>
+        <!-- ground shadow -->
+        <ellipse class="shadow-shape" cx="50" cy="86" rx="17" ry="4"/>
 
-        <!-- glass body -->
+        <!-- glass outer shape -->
         <path d="
-            M41 22
-            C40 33, 40 40, 42 48
-            C44 56, 39 63, 44 69
-            C47 72, 53 72, 56 69
-            C61 63, 56 56, 58 48
-            C60 40, 60 33, 59 22
+            M42 20
+            C41 32, 41 39, 43 46
+            C45 53, 39 60, 42 67
+            C45 73, 55 73, 58 67
+            C61 60, 55 53, 57 46
+            C59 39, 59 32, 58 20
             Z
         " class="glass-line"/>
 
         <!-- rim -->
-        <ellipse cx="50" cy="22" rx="9" ry="2.8" class="glass-line"/>
+        <ellipse cx="50" cy="20" rx="8.8" ry="2.6" class="glass-line"/>
 
-        <!-- liquid -->
-        <ellipse cx="50" cy="61" rx="12.5" ry="4.2"
-                 fill="url(#portsoyLiquid)" opacity="0.88"/>
+        <!-- liquid top -->
+        <ellipse cx="50" cy="61" rx="12.5" ry="3.8"
+                 fill="url(#portsoyLiquid)" opacity="0.92"/>
+
+        <!-- liquid body -->
         <path d="
             M37.5 61
-            C38 68, 62 68, 62.5 61
-            L60 67
-            C58 71, 42 71, 40 67
+            C38 67, 62 67, 62.5 61
+            L60 66.5
+            C58.2 70.5, 41.8 70.5, 40 66.5
             Z
-        " fill="url(#portsoyLiquid)" opacity="0.72"/>
+        " fill="url(#portsoyLiquid)" opacity="0.78"/>
 
-        <!-- base neck -->
-        <rect x="46" y="70" width="8" height="4" rx="1.8" class="glass-line"/>
+        <!-- subtle liquid highlight -->
+        <ellipse cx="50" cy="59.8" rx="10.5" ry="2.2"
+                 fill="none"
+                 stroke="rgba(255,255,255,0.22)"
+                 stroke-width="0.8"/>
 
-        <!-- base -->
-        <ellipse cx="50" cy="78" rx="8" ry="3.2" class="glass-line"/>
+        <!-- neck -->
+        <rect x="46.2" y="70" width="7.6" height="4.2" rx="1.6" class="glass-line"/>
 
-        <!-- highlight -->
+        <!-- base top -->
+        <ellipse cx="50" cy="74.2" rx="7.2" ry="2.2" class="glass-line"/>
+
+        <!-- base bottom -->
+        <ellipse cx="50" cy="79" rx="8.5" ry="3" class="glass-line"/>
+
+        <!-- left glass highlight -->
         <path d="
-            M43 28
-            C44 39, 45 50, 44 62
+            M44 26
+            C44.8 36, 45.2 46, 44.6 58
         " class="glass-highlight"/>
+
+        <!-- right tiny highlight -->
+        <path d="
+            M55.5 28
+            C56 36, 55.8 44, 55.2 52
+        "
+        stroke="rgba(255,255,255,0.42)"
+        stroke-width="1"
+        fill="none"
+        stroke-linecap="round"/>
     </svg>
 </div>
 
-            </div>
 
 </div>
     <div class="menu-item">
