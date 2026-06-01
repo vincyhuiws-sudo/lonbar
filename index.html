@@ -721,49 +721,56 @@
             <button class="btn-qty" onclick="changeQty('portsoy', 1)">+</button>
         </div>
     </div>
-    <div class="item-svg-wrapper">
-       <svg viewBox="0 0 100 100" aria-label="portsoyLiquid">
-    <defs>
-        <linearGradient id="portsoyLiquid" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#d18a46"/>
-            <stop offset="100%" stop-color="#6f3d1f"/>
-        </linearGradient>
-    </defs>
-    
-    <ellipse class="shadow-shape" cx="50" cy="88" rx="20" ry="5"/>
+ <div class="item-svg-wrapper">
+    <svg viewBox="0 0 100 100" aria-label="Portsoy whisky glass">
+        <defs>
+            <linearGradient id="portsoyLiquid" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#d18a46"/>
+                <stop offset="100%" stop-color="#6f3d1f"/>
+            </linearGradient>
+        </defs>
 
-    <!-- rim ✅ -->
-    <ellipse cx="50" cy="20" rx="12" ry="3.2" class="glass-line"/>
-           
-    <!-- glass outline -->
-    <path d="
-    M42 20
-    C40 35, 40 42, 42 50
-    C44 58, 36 64, 43 72
-    C48 76, 52 76, 57 72
-    C64 64, 56 58, 58 50
-    C60 42, 60 35, 58 20
-    Z"
-    class="glass-line"/>
+        <!-- shadow -->
+        <ellipse class="shadow-shape" cx="50" cy="86" rx="16" ry="4"/>
 
+        <!-- glass body -->
+        <path d="
+            M41 22
+            C40 33, 40 40, 42 48
+            C44 56, 39 63, 44 69
+            C47 72, 53 72, 56 69
+            C61 63, 56 56, 58 48
+            C60 40, 60 33, 59 22
+            Z
+        " class="glass-line"/>
 
-    <!-- liquid -->
-    <ellipse cx="50" cy="64" rx="14.5" ry="6" fill="url(#portsoyLiquid)" opacity="0.75"/>
+        <!-- rim -->
+        <ellipse cx="50" cy="22" rx="9" ry="2.8" class="glass-line"/>
 
+        <!-- liquid -->
+        <ellipse cx="50" cy="61" rx="12.5" ry="4.2"
+                 fill="url(#portsoyLiquid)" opacity="0.88"/>
+        <path d="
+            M37.5 61
+            C38 68, 62 68, 62.5 61
+            L60 67
+            C58 71, 42 71, 40 67
+            Z
+        " fill="url(#portsoyLiquid)" opacity="0.72"/>
 
-    <!-- base ✅ -->
-    <rect x="45" y="72" width="10" height="5" rx="2" class="glass-line"/>
-    <ellipse cx="50" cy="80" rx="9" ry="4" class="glass-line"/>
+        <!-- base neck -->
+        <rect x="46" y="70" width="8" height="4" rx="1.8" class="glass-line"/>
 
+        <!-- base -->
+        <ellipse cx="50" cy="78" rx="8" ry="3.2" class="glass-line"/>
 
-
-    <!-- highlight -->
-    <path d="
-    M39 26
-    C41 40, 43 55, 41 66
-    " 
-    class="glass-highlight"/>
-</svg>
+        <!-- highlight -->
+        <path d="
+            M43 28
+            C44 39, 45 50, 44 62
+        " class="glass-highlight"/>
+    </svg>
+</div>
 
             </div>
 
