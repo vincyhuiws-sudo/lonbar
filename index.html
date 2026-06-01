@@ -43,6 +43,8 @@
             margin: 5px 0;
             color: #222;
         }
+        
+        /* ─── 飲品外框：Flexbox 左右排版 ─── */
         .menu-item {
             background: white;
             border: 1px solid #e6e0d4;
@@ -53,38 +55,83 @@
             max-width: 370px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        /* 左邊文字細節區塊 */
+        .item-details {
+            flex: 1;
+            padding-right: 15px;
+            display: flex;
+            flex-direction: column;
         }
         .item-info {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
             font-weight: bold;
         }
-        .item-title { font-size: 18px; color: #444; }
-        .item-price { color: #b5945b; font-size: 18px; }
+        .item-title { font-size: 16px; color: #444; }
+        .item-price { color: #b5945b; font-size: 16px; margin-left: 10px; }
         .item-desc {
-            font-size: 13px;
+            font-size: 12px;
             color: #777;
             margin-top: 5px;
             font-style: italic;
+            line-height: 1.4;
         }
+        
+        /* ─── 右邊 SVG 酒樣容器 ─── */
+        .item-svg-wrapper {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #faf8f5; /* 淡淡的底色襯托線條 */
+            border-radius: 6px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        /* ─── 購物車按鍵：極簡方形幼邊框 ─── */
         .order-controls {
             display: flex;
-            justify-content: flex-end;
+            justify-content: flex-start;
             align-items: center;
-            margin-top: 10px;
+            margin-top: 12px;
         }
         .btn-qty {
-            background-color: #b5945b;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 18px;
+            background-color: transparent;
+            color: #b5945b;
+            border: 1px solid #e6e0d4;
+            width: 26px;
+            height: 26px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
         }
-        .qty { margin: 0 15px; font-weight: bold; font-size: 16px; }
+        .btn-qty:hover {
+            border-color: #b5945b;
+            background-color: #fcfbf7;
+        }
+        .qty { 
+            margin: 0 12px; 
+            font-weight: bold; 
+            font-size: 14px; 
+            color: #444;
+            min-width: 12px;
+            text-align: center;
+        }
+
+        /* 下方固定欄 */
         .footer {
             position: fixed;
             bottom: 0;
@@ -126,80 +173,148 @@
     </div>
 
     <div class="menu-item">
-        <div class="item-info">
-            <div class="item-title">Dry Martini 乾馬天尼</div>
-            <div class="item-price">$120</div>
+        <div class="item-details">
+            <div class="item-info">
+                <div class="item-title">Dry Martini 乾馬天尼</div>
+                <div class="item-price">$120</div>
+            </div>
+            <div class="item-desc">Gin, Dry Vermouth, Olive</div>
+            <div class="order-controls">
+                <button class="btn-qty" onclick="changeQty('martini', -1)">-</button>
+                <span class="qty" id="qty-martini">0</span>
+                <button class="btn-qty" onclick="changeQty('martini', 1)">+</button>
+            </div>
         </div>
-        <div class="item-desc">Gin, Dry Vermouth, Olive</div>
-        <div class="order-controls">
-            <button class="btn-qty" onclick="changeQty('martini', -1)">-</button>
-            <span class="qty" id="qty-martini">0</span>
-            <button class="btn-qty" onclick="changeQty('martini', 1)">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-info">
-            <div class="item-title">Black Vivian 黑色薇薇安</div>
-            <div class="item-price">$110</div>
-        </div>
-        <div class="item-desc">An intriguing blend of dark spirits and bitters</div>
-        <div class="order-controls">
-            <button class="btn-qty" onclick="changeQty('vivian', -1)">-</button>
-            <span class="qty" id="qty-vivian">0</span>
-            <button class="btn-qty" onclick="changeQty('vivian', 1)">+</button>
+        <div class="item-svg-wrapper">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M20 25 L80 25 L50 65 Z" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <line x1="50" y1="65" x2="50" y2="85" stroke="#b5945b" stroke-width="2.5"/>
+                <line x1="35" y1="85" x2="65" y2="85" stroke="#b5945b" stroke-width="2.5" stroke-linecap="round"/>
+                <line x1="42" y1="18" x2="55" y2="45" stroke="#777" stroke-width="1.5"/>
+                <circle cx="49" cy="32" r="5" fill="#fcfbf7" stroke="#b5945b" stroke-width="1.5"/>
+            </svg>
         </div>
     </div>
 
     <div class="menu-item">
-        <div class="item-info">
-            <div class="item-title">Black Russian 黑色俄羅斯</div>
-            <div class="item-price">$110</div>
+        <div class="item-details">
+            <div class="item-info">
+                <div class="item-title">Black Vivian 黑色薇薇安</div>
+                <div class="item-price">$110</div>
+            </div>
+            <div class="item-desc">An intriguing blend of dark spirits and bitters</div>
+            <div class="order-controls">
+                <button class="btn-qty" onclick="changeQty('vivian', -1)">-</button>
+                <span class="qty" id="qty-vivian">0</span>
+                <button class="btn-qty" onclick="changeQty('vivian', 1)">+</button>
+            </div>
         </div>
-        <div class="item-desc">Vodka, Coffee Liqueur, simple & bold</div>
-        <div class="order-controls">
-            <button class="btn-qty" onclick="changeQty('russian', -1)">-</button>
-            <span class="qty" id="qty-russian">0</span>
-            <button class="btn-qty" onclick="changeQty('russian', 1)">+</button>
-        </div>
-    </div>
-
-    <div class="menu-item">
-        <div class="item-info">
-            <div class="item-title">話梅 Highball</div>
-            <div class="item-price">$95</div>
-        </div>
-        <div class="item-desc">Whisky, preserved plum, soda, ice</div>
-        <div class="order-controls">
-            <button class="btn-qty" onclick="changeQty('highball', -1)">-</button>
-            <span class="qty" id="qty-highball">0</span>
-            <button class="btn-qty" onclick="changeQty('highball', 1)">+</button>
+        <div class="item-svg-wrapper">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M22 30 C22 58, 78 58, 78 30 Z" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <line x1="50" y1="52" x2="50" y2="85" stroke="#b5945b" stroke-width="2.5"/>
+                <line x1="35" y1="85" x2="65" y2="85" stroke="#b5945b" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M25 36 C40 42, 60 42, 75 36" stroke="#b5945b" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/>
+            </svg>
         </div>
     </div>
 
     <div class="menu-item">
-        <div class="item-info">
-            <div class="item-title">Gin & 桔仔 Rickey</div>
-            <div class="item-price">$105</div>
+        <div class="item-details">
+            <div class="item-info">
+                <div class="item-title">Black Russian 黑色俄羅斯</div>
+                <div class="item-price">$110</div>
+            </div>
+            <div class="item-desc">Vodka, Coffee Liqueur, simple & bold</div>
+            <div class="order-controls">
+                <button class="btn-qty" onclick="changeQty('russian', -1)">-</button>
+                <span class="qty" id="qty-russian">0</span>
+                <button class="btn-qty" onclick="changeQty('russian', 1)">+</button>
+            </div>
         </div>
-        <div class="item-desc">Gin, fresh kalamansi juice, soda</div>
-        <div class="order-controls">
-            <button class="btn-qty" onclick="changeQty('rickey', -1)">-</button>
-            <span class="qty" id="qty-rickey">0</span>
-            <button class="btn-qty" onclick="changeQty('rickey', 1)">+</button>
+        <div class="item-svg-wrapper">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M30 25 L35 80 L65 80 L70 25" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <rect x="38" y="52" width="16" height="16" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(15 46 60)"/>
+                <rect x="46" y="38" width="15" height="15" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(-10 53 45)"/>
+                <line x1="32" y1="42" x2="68" y2="42" stroke="#b5945b" stroke-width="1.2" stroke-dasharray="3 3"/>
+            </svg>
         </div>
     </div>
 
     <div class="menu-item">
-        <div class="item-info">
-            <div class="item-title">Vermouth 梅香 Spritz</div>
-            <div class="item-price">$115</div>
+        <div class="item-details">
+            <div class="item-info">
+                <div class="item-title">話梅 Highball</div>
+                <div class="item-price">$95</div>
+            </div>
+            <div class="item-desc">Whisky, preserved plum, soda, ice</div>
+            <div class="order-controls">
+                <button class="btn-qty" onclick="changeQty('highball', -1)">-</button>
+                <span class="qty" id="qty-highball">0</span>
+                <button class="btn-qty" onclick="changeQty('highball', 1)">+</button>
+            </div>
         </div>
-        <div class="item-desc">Vermouth, plum syrup, sparkling wine, soda</div>
-        <div class="order-controls">
-            <button class="btn-qty" onclick="changeQty('spritz', -1)">-</button>
-            <span class="qty" id="qty-spritz">0</span>
-            <button class="btn-qty" onclick="changeQty('spritz', 1)">+</button>
+        <div class="item-svg-wrapper">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M34 15 L38 85 L62 85 L66 15" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <rect x="42" y="58" width="15" height="15" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(5 49 65)"/>
+                <rect x="41" y="38" width="15" height="15" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(-15 48 45)"/>
+                <circle cx="50" cy="74" r="6" fill="#b5945b" opacity="0.3" stroke="#b5945b" stroke-width="1.5"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <div class="item-details">
+            <div class="item-info">
+                <div class="item-title">Gin & 桔仔 Rickey</div>
+                <div class="item-price">$105</div>
+            </div>
+            <div class="item-desc">Gin, fresh kalamansi juice, soda</div>
+            <div class="order-controls">
+                <button class="btn-qty" onclick="changeQty('rickey', -1)">-</button>
+                <span class="qty" id="qty-rickey">0</span>
+                <button class="btn-qty" onclick="changeQty('rickey', 1)">+</button>
+            </div>
+        </div>
+        <div class="item-svg-wrapper">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M34 15 L38 85 L62 85 L66 15" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <circle cx="44" cy="32" r="9" stroke="#b5945b" stroke-width="1.5" fill="none"/>
+                <line x1="44" y1="23" x2="44" y2="41" stroke="#b5945b" stroke-width="1"/>
+                <line x1="35" y1="32" x2="53" y2="32" stroke="#b5945b" stroke-width="1"/>
+                <line x1="58" y1="10" x2="46" y2="75" stroke="#b5945b" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="39" cy="55" r="1.5" fill="#b5945b"/>
+                <circle cx="55" cy="68" r="1" fill="#b5945b"/>
+                <circle cx="48" cy="48" r="2" fill="#b5945b"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="menu-item">
+        <div class="item-details">
+            <div class="item-info">
+                <div class="item-title">Vermouth 梅香 Spritz</div>
+                <div class="item-price">$115</div>
+            </div>
+            <div class="item-desc">Vermouth, plum syrup, sparkling wine, soda</div>
+            <div class="order-controls">
+                <button class="btn-qty" onclick="changeQty('spritz', -1)">-</button>
+                <span class="qty" id="qty-spritz">0</span>
+                <button class="btn-qty" onclick="changeQty('spritz', 1)">+</button>
+            </div>
+        </div>
+        <div class="item-svg-wrapper">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path d="M26 28 C26 62, 74 62, 74 28 Z" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
+                <line x1="50" y1="56" x2="50" y2="85" stroke="#b5945b" stroke-width="2.5"/>
+                <line x1="35" y1="85" x2="65" y2="85" stroke="#b5945b" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M28 32 C40 38, 60 38, 72 32" stroke="#b5945b" stroke-width="1.5" fill="none"/>
+                <circle cx="44" cy="44" r="1.5" fill="#b5945b"/>
+                <circle cx="54" cy="38" r="2" fill="#b5945b"/>
+                <circle cx="48" cy="50" r="1" fill="#b5945b"/>
+            </svg>
         </div>
     </div>
 
@@ -246,14 +361,13 @@
             document.getElementById('total-display').innerText = `$${Math.round(total)}`;
         }
 
-        // ─── 已修改：落單時跳轉到 WhatsApp ───
         function submitOrder() {
-            let orderSummary = "𐃯 【Home Bar 新柯打！】\n\n";
+            let orderSummary = "🍹 [ Home Bar 新柯打 ]\n\n";
             let hasItems = false;
             
             for (let item in cart) {
                 if (cart[item] > 0) {
-                    orderSummary += `𐃯 ${names[item]} x ${cart[item]}\n`;
+                    orderSummary += `- ${names[item]} x ${cart[item]}\n`;
                     hasItems = true;
                 }
             }
@@ -263,18 +377,13 @@
                 return;
             }
             
-            orderSummary += `\n*多謝連加一: ${document.getElementById('total-display').innerText}\n\n唔該晒大隆調酒師！(ෆ˙ᵕ˙ෆ)`;
+            orderSummary += `\n* 總計(連加一): ${document.getElementById('total-display').innerText}\n\n唔該晒大隆調酒師！`;
             
-            // 🛑 請將下方的 852XXXXXXXX 改成你用來接收訂單的真實電話號碼（例如: "85291234567"）
             const phoneNumber = "85263378993"; 
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(orderSummary)}`;
             
-            // 建立 WhatsApp 網址
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(orderSummary)}`;
-            
-            // 在新分頁打開 WhatsApp
             window.open(whatsappUrl, '_blank');
             
-            // 清空購物車
             for (let item in cart) {
                 cart[item] = 0;
                 document.getElementById(`qty-${item}`).innerText = 0;
