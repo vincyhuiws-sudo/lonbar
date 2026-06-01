@@ -1,319 +1,636 @@
 <!DOCTYPE html>
 <html lang="zh-HK">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大隆Home Bar</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>大隆 Home Bar</title>
 
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#22c55e">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#22c55e" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
 
     <style>
+        :root {
+            --bg: #fcfbf7;
+            --card: #fffdf9;
+            --card-2: #f9f3e8;
+            --text: #2f2a24;
+            --muted: #857b70;
+            --line: #e8dfd0;
+            --gold: #9e7640;
+            --gold-soft: #b8945c;
+            --gold-light: #e9dcc4;
+            --shadow: rgba(33, 24, 13, 0.08);
+            --footer-shadow: rgba(0, 0, 0, 0.12);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #fcfbf7;
-            color: #333;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background:
+                radial-gradient(circle at top, #fffdf9 0%, #fcfbf7 45%, #f7f2e8 100%);
+            color: var(--text);
             margin: 0;
-            padding: 20px;
+            padding: 20px 18px 110px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
+
         .page-banner {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
             height: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+            margin-bottom: 16px;
             display: block;
+            object-fit: cover;
         }
+
         .header {
             text-align: center;
-            border-bottom: 2px double #b5945b;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            padding: 4px 0 16px;
+            margin-bottom: 10px;
             width: 100%;
             max-width: 400px;
         }
-        .header h1 {
-            font-size: 24px;
-            letter-spacing: 2px;
-            margin: 5px 0;
-            color: #222;
+
+        .header-kicker {
+            color: var(--gold);
+            font-size: 12px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
         }
-        
-        /* ─── 飲品外框：Flexbox 左右排版 ─── */
-        .menu-item {
-            background: white;
-            border: 1px solid #e6e0d4;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 15px;
+
+        .header h1 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin: 4px 0 8px;
+            color: #221d17;
+            font-weight: 700;
+        }
+
+        .header-subtitle {
+            color: #7c7365;
+            font-size: 13px;
+            line-height: 1.6;
+            padding: 0 10px;
+        }
+
+        .menu-section-title {
             width: 100%;
-            max-width: 370px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            box-sizing: border-box;
+            max-width: 390px;
+            margin: 16px 0 12px;
+            font-size: 12px;
+            letter-spacing: 2.3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            border-bottom: 1px solid var(--gold-light);
+            padding-bottom: 7px;
+        }
+
+        .menu-item {
+            background: linear-gradient(180deg, #fffefb 0%, #fcf8f1 100%);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            width: 100%;
+            max-width: 390px;
+            box-shadow:
+                0 10px 20px rgba(42, 28, 10, 0.04),
+                inset 0 1px 0 rgba(255,255,255,0.88);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 14px;
         }
-        
-        /* 左邊文字細節區塊 */
+
         .item-details {
             flex: 1;
-            padding-right: 15px;
+            min-width: 0;
             display: flex;
             flex-direction: column;
         }
-        .item-info {
+
+        .item-top-row {
             display: flex;
             justify-content: space-between;
-            align-items: baseline;
-            font-weight: bold;
+            align-items: flex-start;
+            gap: 10px;
         }
-        .item-title { font-size: 16px; color: #444; }
-        .item-price { color: #b5945b; font-size: 16px; margin-left: 10px; }
+
+        .item-name-group {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .item-title {
+            font-size: 17px;
+            color: #2b241d;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            line-height: 1.25;
+        }
+
+        .item-subtitle {
+            font-size: 12px;
+            color: #9a8e7f;
+            margin-top: 3px;
+            letter-spacing: 1px;
+        }
+
+        .item-price {
+            color: var(--gold);
+            font-size: 14px;
+            font-weight: 700;
+            border: 1px solid #eadcc4;
+            background: linear-gradient(180deg, #fffaf1 0%, #f6eddb 100%);
+            border-radius: 999px;
+            padding: 6px 10px;
+            line-height: 1;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+            white-space: nowrap;
+            margin-top: 1px;
+        }
+
         .item-desc {
             font-size: 12px;
-            color: #777;
-            margin-top: 5px;
-            font-style: italic;
-            line-height: 1.4;
+            color: #746b60;
+            margin-top: 8px;
+            line-height: 1.5;
+            letter-spacing: 0.2px;
         }
-        
-        /* ─── 右邊 SVG 酒樣容器 ─── */
+
         .item-svg-wrapper {
-            width: 70px;
-            height: 70px;
+            width: 88px;
+            height: 88px;
+            min-width: 88px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #faf8f5; /* 淡淡的底色襯托線條 */
-            border-radius: 6px;
-            padding: 5px;
-            box-sizing: border-box;
+            background:
+                radial-gradient(circle at 30% 25%, #fffdf8 0%, #f8f0e2 60%, #f1e6d2 100%);
+            border-radius: 14px;
+            padding: 6px;
+            border: 1px solid #ede3d1;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.85),
+                0 6px 14px rgba(0,0,0,0.05);
         }
 
-        /* ─── 購物車按鍵：極簡方形幼邊框 ─── */
+        .item-svg-wrapper svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
         .order-controls {
             display: flex;
             justify-content: flex-start;
             align-items: center;
             margin-top: 12px;
         }
+
         .btn-qty {
-            background-color: transparent;
-            color: #b5945b;
-            border: 1px solid #e6e0d4;
-            width: 26px;
-            height: 26px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: bold;
+            appearance: none;
+            background: rgba(255,255,255,0.62);
+            color: var(--gold);
+            border: 1px solid #e1d3bb;
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: 700;
             cursor: pointer;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
+            transition: all 0.18s ease;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
         }
+
         .btn-qty:hover {
-            border-color: #b5945b;
-            background-color: #fcfbf7;
+            border-color: var(--gold);
+            background-color: #fff9ef;
+            transform: translateY(-1px);
         }
-        .qty { 
-            margin: 0 12px; 
-            font-weight: bold; 
-            font-size: 14px; 
-            color: #444;
-            min-width: 12px;
+
+        .qty {
+            margin: 0 12px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #443a2f;
+            min-width: 14px;
             text-align: center;
         }
 
-        /* 下方固定欄 */
         .footer {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: white;
-            padding: 15px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 14px 16px calc(14px + env(safe-area-inset-bottom));
+            box-shadow: 0 -6px 20px var(--footer-shadow);
             display: flex;
             justify-content: space-between;
             align-items: center;
             max-width: 440px;
             margin: 0 auto;
             box-sizing: border-box;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            border-top: 1px solid #efe4d2;
         }
-        .total-price { font-size: 18px; font-weight: bold; }
-        .total-price span { color: #b5945b; }
+
+        .total-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #342d26;
+        }
+
+        .total-price small {
+            display: block;
+            font-size: 11px;
+            color: #8e8478;
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+
+        .total-price span {
+            color: var(--gold);
+            font-size: 20px;
+        }
+
         .btn-submit {
-            background-color: #222;
+            background: linear-gradient(180deg, #2d261f 0%, #17120d 100%);
             color: white;
             border: none;
-            padding: 10px 25px;
-            border-radius: 20px;
-            font-size: 16px;
-            font-weight: bold;
+            padding: 11px 22px;
+            border-radius: 999px;
+            font-size: 15px;
+            font-weight: 700;
             cursor: pointer;
+            letter-spacing: 0.3px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
         }
-        .btn-submit:hover { background-color: #b5945b; }
-        .padding-bottom { height: 80px; }
+
+        .btn-submit:hover {
+            background: linear-gradient(180deg, #b38a52 0%, #8f6d3d 100%);
+        }
+
+        .padding-bottom {
+            height: 90px;
+        }
+
+        /* Unified icon system */
+        .glass-line {
+            stroke: #9a7440;
+            stroke-width: 2.4;
+            fill: none;
+            stroke-linejoin: round;
+            stroke-linecap: round;
+        }
+
+        .detail-line {
+            stroke: #b68a4d;
+            stroke-width: 1.6;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .glass-highlight {
+            stroke: rgba(255,255,255,0.88);
+            stroke-width: 1.6;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        .shadow-shape {
+            fill: rgba(0,0,0,0.05);
+        }
+
+        .bubble {
+            fill: #d9c089;
+            opacity: 0.82;
+        }
+
+        .ice {
+            fill: rgba(255,255,255,0.34);
+            stroke: #ceb37f;
+            stroke-width: 1.2;
+        }
+
+        .garnish {
+            fill: #c5a05d;
+            stroke: #9a7440;
+            stroke-width: 1.2;
+        }
+
+        .liquid-stroke {
+            stroke: rgba(154,116,64,0.35);
+            stroke-width: 1;
+            fill: none;
+        }
     </style>
 </head>
 <body>
 
-    <img class="page-banner" src="banner.png" alt="Home Bar Bartender Banner">
+    <img class="page-banner" src="banner.png" alt="Home Bar Bartender Banner" />
 
     <div class="header">
+        <div class="header-kicker">House Selection</div>
         <h1>COCKTAIL MENU</h1>
-        <div style="color: #b5945b; font-size: 14px;">精選雞尾酒落單系統</div>
+        <div class="header-subtitle">
+            精選雞尾酒即時落單。每杯即叫即調，帶少少儀式感，啱晒今晚慢慢飲。
+        </div>
     </div>
 
+    <div class="menu-section-title">Signature Cocktails</div>
+
+    <!-- Dry Martini -->
     <div class="menu-item">
         <div class="item-details">
-            <div class="item-info">
-                <div class="item-title">Dry Martini 乾馬天尼</div>
+            <div class="item-top-row">
+                <div class="item-name-group">
+                    <div class="item-title">Dry Martini</div>
+                    <div class="item-subtitle">乾馬天尼</div>
+                </div>
                 <div class="item-price">$120</div>
             </div>
             <div class="item-desc">Gin, Dry Vermouth, Olive</div>
             <div class="order-controls">
-                <button class="btn-qty" onclick="changeQty('martini', -1)">-</button>
+                <button class="btn-qty" onclick="changeQty('martini', -1)">−</button>
                 <span class="qty" id="qty-martini">0</span>
                 <button class="btn-qty" onclick="changeQty('martini', 1)">+</button>
             </div>
         </div>
         <div class="item-svg-wrapper">
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path d="M20 25 L80 25 L50 65 Z" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                <line x1="50" y1="65" x2="50" y2="85" stroke="#b5945b" stroke-width="2.5"/>
-                <line x1="35" y1="85" x2="65" y2="85" stroke="#b5945b" stroke-width="2.5" stroke-linecap="round"/>
-                <line x1="42" y1="18" x2="55" y2="45" stroke="#777" stroke-width="1.5"/>
-                <circle cx="49" cy="32" r="5" fill="#fcfbf7" stroke="#b5945b" stroke-width="1.5"/>
+            <svg viewBox="0 0 100 100" aria-label="Dry Martini Icon">
+                <defs>
+                    <linearGradient id="martiniLiquid" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#f3e8b8" />
+                        <stop offset="100%" stop-color="#d9c17d" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="shadow-shape" cx="50" cy="85" rx="18" ry="4"></ellipse>
+
+                <path d="M24 26 L76 26 L50 56 Z" fill="url(#martiniLiquid)" opacity="0.65"></path>
+                <path d="M20 24 L80 24 L50 61 Z" class="glass-line"></path>
+                <line x1="50" y1="61" x2="50" y2="84" class="glass-line"></line>
+                <line x1="36" y1="84" x2="64" y2="84" class="glass-line"></line>
+
+                <path d="M26 24 L42 24" class="glass-highlight"></path>
+                <line x1="45" y1="37" x2="35" y2="56" class="glass-highlight"></line>
+
+                <!-- olive -->
+                <line x1="38" y1="20" x2="58" y2="45" class="detail-line"></line>
+                <circle cx="49" cy="34" r="5.2" class="garnish"></circle>
+                <circle cx="49" cy="34" r="1.2" fill="#87652f"></circle>
+
+                <!-- sparkle -->
+                <path d="M67 18 L69 22 L73 24 L69 26 L67 30 L65 26 L61 24 L65 22 Z" fill="#ead7ab" opacity="0.82"></path>
             </svg>
         </div>
     </div>
 
+    <!-- Black Vivian -->
     <div class="menu-item">
         <div class="item-details">
-            <div class="item-info">
-                <div class="item-title">Black Vivian 黑色薇薇安</div>
+            <div class="item-top-row">
+                <div class="item-name-group">
+                    <div class="item-title">Black Vivian</div>
+                    <div class="item-subtitle">黑色薇薇安</div>
+                </div>
                 <div class="item-price">$110</div>
             </div>
             <div class="item-desc">An intriguing blend of dark spirits and bitters</div>
             <div class="order-controls">
-                <button class="btn-qty" onclick="changeQty('vivian', -1)">-</button>
+                <button class="btn-qty" onclick="changeQty('vivian', -1)">−</button>
                 <span class="qty" id="qty-vivian">0</span>
                 <button class="btn-qty" onclick="changeQty('vivian', 1)">+</button>
             </div>
         </div>
         <div class="item-svg-wrapper">
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path d="M22 30 C22 58, 78 58, 78 30 Z" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                <line x1="50" y1="52" x2="50" y2="85" stroke="#b5945b" stroke-width="2.5"/>
-                <line x1="35" y1="85" x2="65" y2="85" stroke="#b5945b" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M25 36 C40 42, 60 42, 75 36" stroke="#b5945b" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/>
+            <svg viewBox="0 0 100 100" aria-label="Black Vivian Icon">
+                <defs>
+                    <linearGradient id="vivianLiquid" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#6a4b44" />
+                        <stop offset="100%" stop-color="#2f1f1e" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="shadow-shape" cx="50" cy="85" rx="18" ry="4"></ellipse>
+
+                <!-- coupe liquid -->
+                <path d="M24 31 C24 52, 76 52, 76 31 C62 38, 38 38, 24 31 Z"
+                      fill="url(#vivianLiquid)" opacity="0.72"></path>
+
+                <path d="M22 28 C22 58, 78 58, 78 28 Z" class="glass-line"></path>
+                <line x1="50" y1="52" x2="50" y2="84" class="glass-line"></line>
+                <line x1="36" y1="84" x2="64" y2="84" class="glass-line"></line>
+
+                <path d="M29 31 C40 35, 60 35, 71 31" class="glass-highlight"></path>
+
+                <!-- mysterious bitters swirl -->
+                <path d="M34 38 C40 31, 59 31, 66 39 C58 43, 43 43, 34 38 Z"
+                      fill="none" stroke="#c39a62" stroke-width="1.4" opacity="0.85"></path>
+                <circle cx="40" cy="42" r="1.4" class="bubble"></circle>
+                <circle cx="60" cy="39" r="1.1" class="bubble"></circle>
             </svg>
         </div>
     </div>
 
+    <!-- Black Russian -->
     <div class="menu-item">
         <div class="item-details">
-            <div class="item-info">
-                <div class="item-title">Black Russian 黑色俄羅斯</div>
+            <div class="item-top-row">
+                <div class="item-name-group">
+                    <div class="item-title">Black Russian</div>
+                    <div class="item-subtitle">黑色俄羅斯</div>
+                </div>
                 <div class="item-price">$110</div>
             </div>
-            <div class="item-desc">Vodka, Coffee Liqueur, simple & bold</div>
+            <div class="item-desc">Vodka, Coffee Liqueur, simple &amp; bold</div>
             <div class="order-controls">
-                <button class="btn-qty" onclick="changeQty('russian', -1)">-</button>
+                <button class="btn-qty" onclick="changeQty('russian', -1)">−</button>
                 <span class="qty" id="qty-russian">0</span>
                 <button class="btn-qty" onclick="changeQty('russian', 1)">+</button>
             </div>
         </div>
         <div class="item-svg-wrapper">
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path d="M30 25 L35 80 L65 80 L70 25" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                <rect x="38" y="52" width="16" height="16" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(15 46 60)"/>
-                <rect x="46" y="38" width="15" height="15" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(-10 53 45)"/>
-                <line x1="32" y1="42" x2="68" y2="42" stroke="#b5945b" stroke-width="1.2" stroke-dasharray="3 3"/>
+            <svg viewBox="0 0 100 100" aria-label="Black Russian Icon">
+                <defs>
+                    <linearGradient id="russianLiquid" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#5b3827" />
+                        <stop offset="100%" stop-color="#2f1d17" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="shadow-shape" cx="50" cy="85" rx="20" ry="4"></ellipse>
+
+                <path d="M33 44 L37 79 L63 79 L67 44 Z" fill="url(#russianLiquid)" opacity="0.72"></path>
+                <path d="M30 24 L35 80 L65 80 L70 24" class="glass-line"></path>
+                <line x1="32" y1="44" x2="68" y2="44" class="liquid-stroke"></line>
+
+                <!-- ice cubes -->
+                <rect x="40" y="50" width="15" height="15" rx="2.2" class="ice" transform="rotate(12 47 57)"></rect>
+                <rect x="49" y="38" width="14" height="14" rx="2.2" class="ice" transform="rotate(-10 56 45)"></rect>
+
+                <path d="M35 28 L46 28" class="glass-highlight"></path>
             </svg>
         </div>
     </div>
 
+    <div class="menu-section-title">Highball &amp; Refreshing</div>
+
+    <!-- Highball -->
     <div class="menu-item">
         <div class="item-details">
-            <div class="item-info">
-                <div class="item-title">話梅 Highball</div>
+            <div class="item-top-row">
+                <div class="item-name-group">
+                    <div class="item-title">話梅 Highball</div>
+                    <div class="item-subtitle">Plum Highball</div>
+                </div>
                 <div class="item-price">$95</div>
             </div>
             <div class="item-desc">Whisky, preserved plum, soda, ice</div>
             <div class="order-controls">
-                <button class="btn-qty" onclick="changeQty('highball', -1)">-</button>
+                <button class="btn-qty" onclick="changeQty('highball', -1)">−</button>
                 <span class="qty" id="qty-highball">0</span>
                 <button class="btn-qty" onclick="changeQty('highball', 1)">+</button>
             </div>
         </div>
         <div class="item-svg-wrapper">
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path d="M34 15 L38 85 L62 85 L66 15" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                <rect x="42" y="58" width="15" height="15" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(5 49 65)"/>
-                <rect x="41" y="38" width="15" height="15" rx="2" stroke="#b5945b" stroke-width="1.5" fill="none" transform="rotate(-15 48 45)"/>
-                <circle cx="50" cy="74" r="6" fill="#b5945b" opacity="0.3" stroke="#b5945b" stroke-width="1.5"/>
+            <svg viewBox="0 0 100 100" aria-label="Highball Icon">
+                <defs>
+                    <linearGradient id="highballLiquid" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#e2b56e" />
+                        <stop offset="100%" stop-color="#c88743" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="shadow-shape" cx="50" cy="86" rx="18" ry="4"></ellipse>
+
+                <path d="M37 34 L40 84 L60 84 L63 34 Z" fill="url(#highballLiquid)" opacity="0.62"></path>
+                <path d="M34 15 L38 85 L62 85 L66 15" class="glass-line"></path>
+
+                <!-- ice -->
+                <rect x="41" y="58" width="15" height="15" rx="2" class="ice" transform="rotate(5 49 65)"></rect>
+                <rect x="43" y="40" width="14" height="14" rx="2" class="ice" transform="rotate(-12 50 47)"></rect>
+
+                <!-- plum -->
+                <circle cx="52" cy="73" r="6.2" fill="#b4754e" stroke="#9a7440" stroke-width="1.3"></circle>
+                <circle cx="55" cy="70" r="1.2" fill="#e2b78c" opacity="0.8"></circle>
+
+                <!-- carbonation -->
+                <circle cx="47" cy="31" r="1.4" class="bubble"></circle>
+                <circle cx="56" cy="27" r="1.1" class="bubble"></circle>
+                <circle cx="51" cy="24" r="0.9" class="bubble"></circle>
+
+                <path d="M39 20 L48 20" class="glass-highlight"></path>
             </svg>
         </div>
     </div>
 
+    <!-- Rickey -->
     <div class="menu-item">
         <div class="item-details">
-            <div class="item-info">
-                <div class="item-title">Gin & 桔仔 Rickey</div>
+            <div class="item-top-row">
+                <div class="item-name-group">
+                    <div class="item-title">Gin &amp; 桔仔 Rickey</div>
+                    <div class="item-subtitle">金酒桔仔梳打一杯</div>
+                </div>
                 <div class="item-price">$105</div>
             </div>
             <div class="item-desc">Gin, fresh kalamansi juice, soda</div>
             <div class="order-controls">
-                <button class="btn-qty" onclick="changeQty('rickey', -1)">-</button>
+                <button class="btn-qty" onclick="changeQty('rickey', -1)">−</button>
                 <span class="qty" id="qty-rickey">0</span>
                 <button class="btn-qty" onclick="changeQty('rickey', 1)">+</button>
             </div>
         </div>
         <div class="item-svg-wrapper">
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path d="M34 15 L38 85 L62 85 L66 15" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                <circle cx="44" cy="32" r="9" stroke="#b5945b" stroke-width="1.5" fill="none"/>
-                <line x1="44" y1="23" x2="44" y2="41" stroke="#b5945b" stroke-width="1"/>
-                <line x1="35" y1="32" x2="53" y2="32" stroke="#b5945b" stroke-width="1"/>
-                <line x1="58" y1="10" x2="46" y2="75" stroke="#b5945b" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="39" cy="55" r="1.5" fill="#b5945b"/>
-                <circle cx="55" cy="68" r="1" fill="#b5945b"/>
-                <circle cx="48" cy="48" r="2" fill="#b5945b"/>
+            <svg viewBox="0 0 100 100" aria-label="Rickey Icon">
+                <defs>
+                    <linearGradient id="rickeyLiquid" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#f4f0d8" />
+                        <stop offset="100%" stop-color="#dce7c6" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="shadow-shape" cx="50" cy="86" rx="18" ry="4"></ellipse>
+
+                <path d="M37 34 L40 84 L60 84 L63 34 Z" fill="url(#rickeyLiquid)" opacity="0.50"></path>
+                <path d="M34 15 L38 85 L62 85 L66 15" class="glass-line"></path>
+
+                <!-- kalamansi slice -->
+                <circle cx="43" cy="31" r="9" fill="#f1d56f" stroke="#9a7440" stroke-width="1.4"></circle>
+                <circle cx="43" cy="31" r="6.5" fill="none" stroke="#fff5c8" stroke-width="1.1" opacity="0.95"></circle>
+                <line x1="43" y1="22" x2="43" y2="40" stroke="#fff5c8" stroke-width="1"></line>
+                <line x1="34" y1="31" x2="52" y2="31" stroke="#fff5c8" stroke-width="1"></line>
+
+                <!-- stirrer -->
+                <line x1="59" y1="10" x2="47" y2="76" class="detail-line"></line>
+
+                <!-- bubbles -->
+                <circle cx="48" cy="48" r="2" class="bubble"></circle>
+                <circle cx="39" cy="56" r="1.5" class="bubble"></circle>
+                <circle cx="55" cy="68" r="1.1" class="bubble"></circle>
+
+                <path d="M38 20 L47 20" class="glass-highlight"></path>
             </svg>
         </div>
     </div>
 
+    <!-- Spritz -->
     <div class="menu-item">
         <div class="item-details">
-            <div class="item-info">
-                <div class="item-title">Vermouth 梅香 Spritz</div>
+            <div class="item-top-row">
+                <div class="item-name-group">
+                    <div class="item-title">Vermouth 梅香 Spritz</div>
+                    <div class="item-subtitle">梅香氣泡苦艾酒</div>
+                </div>
                 <div class="item-price">$115</div>
             </div>
             <div class="item-desc">Vermouth, plum syrup, sparkling wine, soda</div>
             <div class="order-controls">
-                <button class="btn-qty" onclick="changeQty('spritz', -1)">-</button>
+                <button class="btn-qty" onclick="changeQty('spritz', -1)">−</button>
                 <span class="qty" id="qty-spritz">0</span>
                 <button class="btn-qty" onclick="changeQty('spritz', 1)">+</button>
             </div>
         </div>
         <div class="item-svg-wrapper">
-            <svg viewBox="0 0 100 100" width="100%" height="100%">
-                <path d="M26 28 C26 62, 74 62, 74 28 Z" stroke="#b5945b" stroke-width="2.5" fill="none" stroke-linejoin="round"/>
-                <line x1="50" y1="56" x2="50" y2="85" stroke="#b5945b" stroke-width="2.5"/>
-                <line x1="35" y1="85" x2="65" y2="85" stroke="#b5945b" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M28 32 C40 38, 60 38, 72 32" stroke="#b5945b" stroke-width="1.5" fill="none"/>
-                <circle cx="44" cy="44" r="1.5" fill="#b5945b"/>
-                <circle cx="54" cy="38" r="2" fill="#b5945b"/>
-                <circle cx="48" cy="50" r="1" fill="#b5945b"/>
+            <svg viewBox="0 0 100 100" aria-label="Spritz Icon">
+                <defs>
+                    <linearGradient id="spritzLiquid" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#f4bc66" />
+                        <stop offset="100%" stop-color="#d67a35" />
+                    </linearGradient>
+                </defs>
+                <ellipse class="shadow-shape" cx="50" cy="86" rx="18" ry="4"></ellipse>
+
+                <path d="M27 31 C27 56, 73 56, 73 31 C61 36, 39 36, 27 31 Z"
+                      fill="url(#spritzLiquid)" opacity="0.68"></path>
+                <path d="M26 28 C26 62, 74 62, 74 28 Z" class="glass-line"></path>
+                <line x1="50" y1="56" x2="50" y2="84" class="glass-line"></line>
+                <line x1="36" y1="84" x2="64" y2="84" class="glass-line"></line>
+
+                <!-- bubbles -->
+                <circle cx="44" cy="44" r="1.4" class="bubble"></circle>
+                <circle cx="54" cy="38" r="2" class="bubble"></circle>
+                <circle cx="48" cy="50" r="1" class="bubble"></circle>
+                <circle cx="58" cy="46" r="1.2" class="bubble"></circle>
+
+                <!-- plum accent -->
+                <circle cx="62" cy="31" r="4.4" fill="#b06a53" stroke="#9a7440" stroke-width="1.2"></circle>
+
+                <path d="M31 31 C41 35, 59 35, 69 31" class="glass-highlight"></path>
             </svg>
         </div>
     </div>
@@ -321,7 +638,10 @@
     <div class="padding-bottom"></div>
 
     <div class="footer">
-        <div class="total-price">總計(連加一): <span id="total-display">$0</span></div>
+        <div class="total-price">
+            <small>總計（連加一）</small>
+            <span id="total-display">$0</span>
+        </div>
         <button class="btn-submit" onclick="submitOrder()">發送訂單</button>
     </div>
 
@@ -344,7 +664,14 @@
             spritz: "Vermouth 梅香 Spritz"
         };
 
-        let cart = { martini: 0, vivian: 0, russian: 0, highball: 0, rickey: 0, spritz: 0 };
+        let cart = {
+            martini: 0,
+            vivian: 0,
+            russian: 0,
+            highball: 0,
+            rickey: 0,
+            spritz: 0
+        };
 
         function changeQty(item, change) {
             cart[item] = Math.max(0, cart[item] + change);
@@ -357,33 +684,33 @@
             for (let item in cart) {
                 subtotal += cart[item] * prices[item];
             }
-            let total = subtotal * 1.1;
-            document.getElementById('total-display').innerText = `$${Math.round(total)}`;
+            const total = subtotal * 1.1;
+            document.getElementById("total-display").innerText = `$${Math.round(total)}`;
         }
 
         function submitOrder() {
             let orderSummary = "🍹 [ Home Bar 新柯打 ]\n\n";
             let hasItems = false;
-            
+
             for (let item in cart) {
                 if (cart[item] > 0) {
                     orderSummary += `- ${names[item]} x ${cart[item]}\n`;
                     hasItems = true;
                 }
             }
-            
+
             if (!hasItems) {
                 alert("你未揀嘢飲喎！調酒師好閒，快啲落單！");
                 return;
             }
-            
-            orderSummary += `\n* 總計(連加一): ${document.getElementById('total-display').innerText}\n\n唔該晒大隆調酒師！`;
-            
-            const phoneNumber = "85263378993"; 
+
+            orderSummary += `\n* 總計(連加一): ${document.getElementById("total-display").innerText}\n\n唔該晒大隆調酒師！`;
+
+            const phoneNumber = "85263378993";
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(orderSummary)}`;
-            
-            window.open(whatsappUrl, '_blank');
-            
+
+            window.open(whatsappUrl, "_blank");
+
             for (let item in cart) {
                 cart[item] = 0;
                 document.getElementById(`qty-${item}`).innerText = 0;
