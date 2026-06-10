@@ -608,6 +608,88 @@
         </div>
     </div>
 
+<!-- Salty Dog -->
+<div class="menu-item">
+    <div class="item-details">
+        <div class="item-top-row">
+            <div class="item-name-group">
+                <div class="item-title">Salty Dog</div>
+                <div class="item-subtitle">鹹狗</div>
+            </div>
+            <div class="item-price">$105</div>
+        </div>
+        <div class="item-desc">Grapefruit, Vodka, Lime Juice</div>
+        <div class="order-controls">
+            <button class="btn-qty" onclick="changeQty('saltydog', -1)">−</button>
+            <span class="qty" id="qty-saltydog">0</span>
+            <button class="btn-qty" onclick="changeQty('saltydog', 1)">+</button>
+        </div>
+    </div>
+
+    <div class="item-svg-wrapper">
+        <svg viewBox="0 0 100 100" aria-label="Salty Dog Icon">
+            <defs>
+                <linearGradient id="saltyDogLiquid" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#ffb347" />
+                    <stop offset="55%" stop-color="#ff9a17" />
+                    <stop offset="100%" stop-color="#f2cf8b" />
+                </linearGradient>
+                <linearGradient id="grapefruitPeel" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#ffbe63" />
+                    <stop offset="100%" stop-color="#f08a21" />
+                </linearGradient>
+            </defs>
+
+            <!-- shadow -->
+            <ellipse class="shadow-shape" cx="50" cy="88" rx="18" ry="4"></ellipse>
+
+            <!-- liquid -->
+            <path d="M39 28 L41 84 L59 84 L61 28 Z"
+                  fill="url(#saltyDogLiquid)" opacity="0.88"></path>
+
+            <!-- soft lower haze / citrus-cloud look -->
+            <ellipse cx="50" cy="76" rx="11" ry="7" fill="rgba(255,245,220,0.28)"></ellipse>
+
+            <!-- glass -->
+            <path d="M36 18 L40 85 L60 85 L64 18" class="glass-line"></path>
+            <line x1="38" y1="18" x2="62" y2="18" class="glass-line"></line>
+            <line x1="39" y1="85" x2="61" y2="85" class="glass-line"></line>
+
+            <!-- salt rim -->
+            <path d="M38 18 L62 18" stroke="#fbf6ee" stroke-width="4.6" stroke-linecap="round"></path>
+            <circle cx="40" cy="17" r="1.4" fill="#fffaf2"></circle>
+            <circle cx="43" cy="16.6" r="1.2" fill="#fffaf2"></circle>
+            <circle cx="46" cy="17.4" r="1.5" fill="#fffaf2"></circle>
+            <circle cx="49" cy="16.8" r="1.2" fill="#fffaf2"></circle>
+            <circle cx="52" cy="17.3" r="1.4" fill="#fffaf2"></circle>
+            <circle cx="55" cy="16.7" r="1.3" fill="#fffaf2"></circle>
+            <circle cx="58" cy="17.2" r="1.4" fill="#fffaf2"></circle>
+            <circle cx="61" cy="16.8" r="1.1" fill="#fffaf2"></circle>
+
+            <!-- ice -->
+            <rect x="43" y="68" width="12" height="12" rx="2.2" class="ice" transform="rotate(8 49 74)"></rect>
+            <rect x="48" y="58" width="11" height="11" rx="2" class="ice" transform="rotate(-10 53.5 63.5)"></rect>
+
+            <!-- grapefruit wedge -->
+            <path d="M58 12 L73 18 L65 31 Z"
+                  fill="url(#grapefruitPeel)"
+                  stroke="#9a7440"
+                  stroke-width="1.2"
+                  stroke-linejoin="round"></path>
+            <path d="M60 14 L69 18 L64 27 Z"
+                  fill="#ffd8a8"
+                  opacity="0.92"></path>
+            <line x1="64.5" y1="16.5" x2="64.5" y2="26" stroke="#fff1db" stroke-width="0.9"></line>
+            <line x1="61.5" y1="19" x2="67.8" y2="21.6" stroke="#fff1db" stroke-width="0.9"></line>
+            <line x1="62.2" y1="24.5" x2="67.2" y2="20.8" stroke="#fff1db" stroke-width="0.9"></line>
+
+            <!-- highlight -->
+            <path d="M42 24 C43 37, 43 60, 42 77" class="glass-highlight"></path>
+        </svg>
+    </div>
+</div>
+
+    
     <!-- Rickey -->
     <div class="menu-item">
         <div class="item-details">
@@ -1113,6 +1195,7 @@
             russian: 110,
             highball: 95,
             rickey: 105,
+            saltydog: 105,
             spritz: 115,
             laphroaig: 110,
             kowloonspirits: 100,
@@ -1131,6 +1214,7 @@
             russian: "Black Russian 黑色俄羅斯",
             highball: "話梅 Highball",
             rickey: "Gin & 桔仔 Rickey",
+            saltydog: "Salty Dog 鹹狗",
             spritz: "Vermouth 梅香 Spritz",       
             laphroaig: "Laphroaig Four Oak Single Malt Whisky",
             kowloonspirits: "Kowloon Spirits Single Malt Whisky",
@@ -1149,6 +1233,7 @@
             russian: 0,
             highball: 0,
             rickey: 0,
+            saltydog: 0,
             spritz: 0,            
             laphroaig: 0,
             kowloonspirits: 0,
